@@ -1,0 +1,21 @@
+<h1>Hello, {{request.user}} {{ request.user.id }}</h1>
+<h3>Address</h3>
+<form method="POST" action="/">
+    {% csrf_token %}
+    {{form.title}}
+    <input type="submit" name="Add Address">
+</form>
+
+{% for i in address %}
+		<div>
+			<a  href="{% url 'update' address.id %}">Update</a>
+			<a  href="{% url 'delete' address.id %}">Delete</a>
+
+			{% if i.complete == True %}
+			<strike>{{i}}</strike>
+			{% else %}
+			<span>{{i}}</span>
+			{% endif %}
+		</div>
+	{% endfor %}
+<a href="{% url 'logout' %}">Logout</a>
