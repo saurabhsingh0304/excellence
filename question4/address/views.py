@@ -45,7 +45,9 @@ def loginpage(request):
 
 @login_required(login_url='login')
 def home(request):
-    address=customer.address_set.all()
+    address=Customer.address_set
+    lst = address.definitions.all()
+    print(lst)
     form=AddressForm()
     if request.method == 'POST':
         form=AddressForm(request.POST)
@@ -53,8 +55,9 @@ def home(request):
             form.save()
         return redirect('/')
     context = {'address':address, 'form':form}
-    return render(request,'address/home.html')
+    return render(request,'address/home.html',context)
 
+'''
 @login_required(login_url='login')
 def updateaddress(request, pk):
 	address = Address.objects.get(id=pk)
@@ -82,7 +85,13 @@ def deleteaddress(request, pk):
 
 	context = {'item':item}
 	return render(request, 'address/delete.html', context)
+'''
 
 def logoutuser(request):
     logout(request)
     return redirect('login')
+
+
+'''
+
+'''

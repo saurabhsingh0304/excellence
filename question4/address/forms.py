@@ -30,4 +30,4 @@ class CustomerForm(forms.ModelForm):
 class AddressForm(forms.ModelForm):
     class Meta:
         model=Address
-        fields='__all__'
+        fields=('street', 'pincode', 'country', 'state', 'phone_num')
